@@ -2,6 +2,7 @@ from flask import Flask , render_template , url_for , request , redirect
 from flask import Flask, render_template, request , jsonify
 import numpy as np
 import pandas as pd
+import os
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
@@ -197,4 +198,6 @@ def project():
     elif name == '3':
         return render_template('movies.html')
     
-app.run(debug=True)
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))  # Default to port 5000 if PORT is not set
+    app.run(host='0.0.0.0', port=port)
